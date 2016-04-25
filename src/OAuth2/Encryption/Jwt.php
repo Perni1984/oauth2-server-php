@@ -13,8 +13,8 @@ class Jwt implements EncryptionInterface
         $header = $this->generateJwtHeader($payload, $algo);
 
         $segments = array(
-            $this->urlSafeB64Encode(json_encode($header)),
-            $this->urlSafeB64Encode(json_encode($payload))
+            $this->urlSafeB64Encode(json_encode($header, JSON_UNESCAPED_SLASHES)),
+            $this->urlSafeB64Encode(json_encode($payload, JSON_UNESCAPED_SLASHES))
         );
 
         $signing_input = implode('.', $segments);
